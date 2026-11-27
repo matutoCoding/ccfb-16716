@@ -1,0 +1,15 @@
+import { chromium } from 'playwright-core';
+const browser = await chromium.launch({ executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe', headless: true, args: ['--use-angle=d3d11', '--ignore-gpu-blocklist'] });
+const page = await browser.newPage({ viewport: { width: 1200, height: 900 } });
+page.on('dialog', d => d.accept());
+page.on('console', m => { if (m.type() === 'error') console.log(m.text().slice(0, 500)); });
+await page.goto('http://127.0.0.1:4173/?inspect=1');
+await page.waitForSelector('.order-card');
+await page.click('[data-route="piping"]');
+await page.waitForTimeout(1200);
+await page.getByRole('button', { name: /清空裱花路径/ }).click();
+await page.waitForTimeout(800);
+await page.click('[data-route="cake"]');
+await page.waitForTimeout(1800);
+await page.screenshot({ path: 'reports/base-only.png' });
+await browser.close();

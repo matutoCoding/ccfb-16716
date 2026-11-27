@@ -1,0 +1,22 @@
+{
+  "name": "gateau-studio",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "test": "vitest run",
+    "selftest": "vitest run src/tests/volume.test.ts",
+    "verify:browser": "node scripts/verify-browser.mjs",
+    "verify:outputs": "node scripts/verify-outputs.mjs",
+    "verify:scenarios": "node scripts/verify-scenarios.mjs"
+  },
+  "devDependencies": {
+    "playwright-core": "^1.65.1",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5",
+    "vitest": "^3.2.4"
+  }
+}
